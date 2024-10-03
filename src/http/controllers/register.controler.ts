@@ -17,6 +17,18 @@ export async function registerController(
 
   const password_hash = await hash(password, 6)
 
+  const userWithSameEmail = await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  })
+
+  if (userWithSameEmail) {
+    return reply.status(409).send({
+      message: 'User already exists.',
+    })
+  }
+
   await prisma.user.create({
     data: {
       name,
