@@ -15,11 +15,13 @@ export async function registerController(
 
   const { name, email, password } = createUserBody.parse(request.body)
 
+  const password_hash = await hash(password, 6)
+
   await prisma.user.create({
     data: {
       name,
       email,
-      password_hash: await hash(password, 6),
+      password_hash,
     },
   })
 
