@@ -1,5 +1,6 @@
 import { prisma } from '../../lib/prisma'
 import { z } from 'zod'
+import { hash } from 'bcryptjs'
 import { FastifyReply, FastifyRequest } from 'fastify'
 
 export async function registerController(
@@ -18,7 +19,7 @@ export async function registerController(
     data: {
       name,
       email,
-      password_hash: password,
+      password_hash: await hash(password, 6),
     },
   })
 
