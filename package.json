@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "dev": "tsx watch src/server.ts",
     "build": "tsup src --out-dir build",
     "start": "node build/server.js",
-    "lint": "prettier --write . && eslint src --ext .ts --fix"
+    "lint": "prettier --write . && eslint src --ext .ts --fix",
   },
   "keywords": [],
   "author": "",
@@ -22,7 +23,9 @@
     "prisma": "5.20.0",
     "tsup": "^8.3.0",
     "tsx": "^4.19.1",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "vite-tsconfig-paths": "5.0.1",
+    "vitest": "2.1.2"
   },
   "dependencies": {
     "@types/bcryptjs": "2.4.6",
