@@ -8,7 +8,7 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsup src --out-dir build",
     "start": "node build/server.js",
-    "lint": "prettier --write . && eslint src --ext .ts --fix",
+    "lint": "prettier --write . && eslint src --ext .ts --fix"
   },
   "keywords": [],
   "author": "",
