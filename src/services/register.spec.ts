@@ -1,12 +1,23 @@
 import { expect, describe, it } from 'vitest'
 import { RegisterUseCase } from './register'
-import { PrismaUsersRepositories } from '@/repositories/prisma/prisma-users-repositories'
 import { compare } from 'bcryptjs'
 
 describe('register use case', () => {
   it('should hash user password upon registration', async () => {
-    const prismaUsersRepositories = new PrismaUsersRepositories()
-    const registerUseCase = new RegisterUseCase(prismaUsersRepositories)
+    const registerUseCase = new RegisterUseCase({
+      async findByEmail() {
+        return null
+      },
+      async create(data) {
+        return {
+          id: '1',
+          name: data.name,
+          email: data.email,
+          created_at: new Date(),
+          password_hash: data.password_hash,
+        }
+      },
+    })
 
     const { user } = await registerUseCase.execute({
       name: 'John Doe',
