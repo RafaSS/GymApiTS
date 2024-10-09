@@ -38,4 +38,16 @@ describe('register use case', () => {
       }),
     ).rejects.toBeInstanceOf(UserAlreadyExistsError)
   })
+  it('should register a user', async () => {
+    const usersRepository = new InmemoryUsersRepository()
+    const registerUseCase = new RegisterUseCase(usersRepository)
+
+    const { user } = await registerUseCase.execute({
+      name: 'John Doe',
+      email: 'bqjUe@example.com',
+      password: '123456',
+    })
+
+    expect(user.id).toEqual(expect.any(String))
+  })
 })
