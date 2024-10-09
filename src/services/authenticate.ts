@@ -11,7 +11,7 @@ interface AuthenticateUseCaseRequest {
 interface AuthenticateUseCaseResponse {
   user: User
 }
-export class AutenticateUseCase {
+export class AuthenticateUseCase {
   constructor(private usersRepository: UsersRepository) {}
   async execute({
     email,
