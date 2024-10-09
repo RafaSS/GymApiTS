@@ -10,7 +10,8 @@
     "build": "tsup src --out-dir build",
     "start": "node build/server.js",
     "lint": "prettier --write . && eslint src --ext .ts --fix",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,7 @@
     "@rocketseat/eslint-config": "2.2.2",
     "@types/node": "^22.7.4",
     "@vitest/coverage-v8": "2.1.2",
+    "@vitest/ui": "2.1.2",
     "eslint": "8.57.1",
     "eslint-config-prettier": "9.1.0",
     "prisma": "5.20.0",
