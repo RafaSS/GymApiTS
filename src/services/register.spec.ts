@@ -2,7 +2,7 @@ import { expect, describe, it } from 'vitest'
 import { RegisterUseCase } from './register'
 import { compare } from 'bcryptjs'
 import { UserAlreadyExistsError } from './erros/user-already-exists'
-import { InmemoryUsersRepository } from '@/repositories/in-memory/in-memory-user-repositories'
+import { InmemoryUsersRepository } from '@/repositories/in-memory/in-memory-user-repository'
 
 describe('register use case', () => {
   it('should hash user password upon registration', async () => {

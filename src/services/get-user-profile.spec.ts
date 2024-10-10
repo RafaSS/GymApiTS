@@ -1,5 +1,5 @@
 import { expect, describe, it } from 'vitest'
-import { InmemoryUsersRepository } from '@/repositories/in-memory/in-memory-user-repositories'
+import { InmemoryUsersRepository } from '@/repositories/in-memory/in-memory-user-repository'
 import { GetUserProfileUseCase } from './get-user-profile'
 import { ResourceNotFoundError } from './erros/resource-not-found'
 
