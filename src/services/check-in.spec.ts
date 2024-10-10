@@ -1,5 +1,4 @@
-import { expect, describe, it } from 'vitest'
-import { beforeEach } from 'node:test'
+import { expect, describe, it, beforeEach } from 'vitest'
 import { InmemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-check-ins-repository'
 import { CheckInUseCase } from './check-in'
 
@@ -17,7 +16,6 @@ describe('checkin use case', () => {
       user_id: 'user-1',
       gymId: 'gym-1',
     })
-
     expect(checkIn.id).toEqual(expect.any(String))
   })
 })
