@@ -10,12 +10,12 @@ interface CheckInUseCaseResponse {
   checkIn: CheckIn
 }
 export class CheckInUseCase {
-  constructor(private usersRepository: CheckInRepository) {}
+  constructor(private checkInsRepository: CheckInRepository) {}
   async execute({
     user_id,
     gymId,
   }: CheckinUsecase): Promise<CheckInUseCaseResponse> {
-    const checkIn = await this.usersRepository.create({
+    const checkIn = await this.checkInsRepository.create({
       gymId,
       user_id,
     })

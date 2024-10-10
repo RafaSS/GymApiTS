@@ -1,26 +1,18 @@
-import { CheckIn,Prisma } from '@prisma/client'
-import { CheckInsRepository } from '../check-ins-repository'
+import { CheckIn, Prisma } from '@prisma/client'
+
 import { randomUUID } from 'crypto'
+import { CheckInRepository } from '../check-ins-repository'
 
-interface CreateCheckInParams {
-  name: string
-  email: string
-  password_hash: string
-}
-
-export class InmemoryUsersRepository implements CreateCheckInParams {
-  name: string
-  email: string
-  password_hash: string
+export class InmemoryCheckInsRepository implements CheckInRepository {
   private checkIns: CheckIn[] = []
 
-  async create(data: ): Promise<User> {
+  async create(data: Prisma.CheckInUncheckedCreateInput): Promise<CheckIn> {
     const checkIn = {
       id: randomUUID(),
-      name: data.name,
-      email: data.email,
+      user_id: data.user_id,
+      gymId: data.gymId,
+      validated_at: data.validated_at ? new Date(data.validated_at) : null,
       created_at: new Date(),
-      password_hash: data.password_hash,
     }
 
     this.checkIns.push(checkIn)
