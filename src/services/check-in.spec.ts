@@ -32,11 +32,27 @@ describe('checkin use case', () => {
       gymId: 'gym-1',
     })
 
-    await expect(async () => {
+    expect(async () => {
       await sut.execute({
         user_id: 'user-1',
         gymId: 'gym-1',
       })
     }).rejects.toBeInstanceOf(Error)
+  })
+
+  it('should be able to check in twice but in different days', async () => {
+    vi.setSystemTime(new Date(2022, 0, 20, 8, 0, 0))
+    await sut.execute({
+      user_id: 'user-1',
+      gymId: 'gym-1',
+    })
+
+    vi.setSystemTime(new Date(2022, 0, 21, 8, 0, 0))
+    const { checkIn } = await sut.execute({
+      user_id: 'user-1',
+      gymId: 'gym-1',
+    })
+
+    expect(checkIn.id).toEqual(expect.any(String))
   })
 })

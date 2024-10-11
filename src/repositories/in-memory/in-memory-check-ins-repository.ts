@@ -6,9 +6,14 @@ import { CheckInRepository } from '../check-ins-repository'
 export class InmemoryCheckInsRepository implements CheckInRepository {
   private checkIns: CheckIn[] = []
 
-  async findByUserIdOnDate(userId: string): Promise<CheckIn | null> {
-    const checkInOnSameDate = await this.checkIns.find(
-      (checkIn) => checkIn.user_id === userId,
+  async findByUserIdOnDate(
+    userId: string,
+    date: Date,
+  ): Promise<CheckIn | null> {
+    const checkInOnSameDate = this.checkIns.find(
+      (checkIn) =>
+        checkIn.user_id === userId &&
+        checkIn.created_at.toDateString() === date.toDateString(),
     )
 
     if (!checkInOnSameDate) {
