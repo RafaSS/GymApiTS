@@ -29,7 +29,7 @@ describe('Get user profile use case', () => {
     const usersRepository = new InmemoryUsersRepository()
     const sut = new GetUserProfileUseCase(usersRepository)
 
-    expect(() => {
+    await expect(() => {
       return sut.execute({
         userId: 'non-existing-id',
       })

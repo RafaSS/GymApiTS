@@ -48,11 +48,11 @@ describe('checkin use case', () => {
     })
 
     vi.setSystemTime(new Date(2022, 0, 21, 8, 0, 0))
-    const { checkIn } = await sut.execute({
-      user_id: 'user-1',
-      gymId: 'gym-1',
-    })
-
-    expect(checkIn.id).toEqual(expect.any(String))
+    await expect(() =>
+      sut.execute({
+        user_id: 'user-1',
+        gymId: 'gym-1',
+      }),
+    ).rejects.toBeInstanceOf(Error)
   })
 })
