@@ -1,14 +1,18 @@
 import { expect, describe, it, beforeEach, vi, afterEach } from 'vitest'
 import { InmemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-check-ins-repository'
 import { CheckInUseCase } from './check-in'
+import { InmemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms-repository'
 
 let sut: CheckInUseCase
+
+let gymsRepository: InmemoryGymsRepository
 let checkinsRepository: InmemoryCheckInsRepository
 
 describe('checkin use case', () => {
   beforeEach(() => {
     checkinsRepository = new InmemoryCheckInsRepository()
-    sut = new CheckInUseCase(checkinsRepository)
+    gymsRepository = new InmemoryGymsRepository()
+    sut = new CheckInUseCase(checkinsRepository, gymsRepository)
 
     vi.useFakeTimers()
   })
@@ -18,6 +22,15 @@ describe('checkin use case', () => {
   })
 
   it('should be able to check in', async () => {
+    await gymsRepository.create({
+      id: 'gym-1',
+      title: 'gym-1',
+      description: null,
+      phone: null,
+      latitude: -27.2092052,
+      longitude: -49.6401091,
+    })
+
     const { checkIn } = await sut.execute({
       user_id: 'user-1',
       gymId: 'gym-1',
@@ -26,6 +39,14 @@ describe('checkin use case', () => {
   })
 
   it('should not be able to check in twice in the same day', async () => {
+    await gymsRepository.create({
+      id: 'gym-1',
+      title: 'gym-1',
+      description: null,
+      phone: null,
+      latitude: -27.2092052,
+      longitude: -49.6401091,
+    })
     vi.setSystemTime(new Date(2022, 0, 20, 8, 0, 0))
     await sut.execute({
       user_id: 'user-1',
@@ -41,6 +62,14 @@ describe('checkin use case', () => {
   })
 
   it('should be able to check in twice but in different days', async () => {
+    await gymsRepository.create({
+      id: 'gym-1',
+      title: 'gym-1',
+      description: null,
+      phone: null,
+      latitude: -27.2092052,
+      longitude: -49.6401091,
+    })
     vi.setSystemTime(new Date(2022, 0, 20, 8, 0, 0))
     await sut.execute({
       user_id: 'user-1',
