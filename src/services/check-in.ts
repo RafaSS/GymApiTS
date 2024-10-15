@@ -3,7 +3,6 @@ import { CheckInRepository } from '@/repositories/check-ins-repository'
 import { GymsRepository } from '@/repositories/gyms-repository'
 import { ResourceNotFoundError } from './erros/resource-not-found'
 import { getDistanceBetweenCoordinates } from './utils/get-distance'
-import { error } from 'console'
 
 interface CheckinUsecase {
   user_id: string
@@ -28,7 +27,7 @@ export class CheckInUseCase {
     userLongitude,
   }: CheckinUsecase): Promise<CheckInUseCaseResponse> {
     const gym = await this.gymsRepository.findById(gymId)
-
+    const MAX_DISTANCE_IN_KILOMETERS = 0.1
     if (!gym) {
       throw new ResourceNotFoundError()
     }
@@ -44,7 +43,7 @@ export class CheckInUseCase {
       },
     )
 
-    if (distance > 0.1) {
+    if (distance > MAX_DISTANCE_IN_KILOMETERS) {
       throw new Error()
     }
 
