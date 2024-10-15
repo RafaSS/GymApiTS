@@ -24,12 +24,31 @@ describe('Fetch User history', () => {
 
     const { checkIns } = await sut.execute({
       user_id: 'user-1',
+      page: 1,
     })
 
     expect(checkIns).toHaveLength(2)
     expect(checkIns).toEqual([
       expect.objectContaining({ gymId: 'gym-1' }),
       expect.objectContaining({ gymId: 'gym-2' }),
+    ])
+  })
+  it('should be able to fetch paginated check ins', async () => {
+    for (let i = 1; i <= 22; i++) {
+      await checkinsRepository.create({
+        gymId: `gym-${i}`,
+        user_id: 'user-1',
+      })
+    }
+    const { checkIns } = await sut.execute({
+      user_id: 'user-1',
+      page: 2,
+    })
+
+    expect(checkIns).toHaveLength(2)
+    expect(checkIns).toEqual([
+      expect.objectContaining({ gymId: 'gym-21' }),
+      expect.objectContaining({ gymId: 'gym-22' }),
     ])
   })
 })
