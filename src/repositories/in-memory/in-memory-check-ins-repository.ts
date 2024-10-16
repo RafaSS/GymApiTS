@@ -3,10 +3,10 @@ import dayjs from 'dayjs'
 
 import { randomUUID } from 'crypto'
 import { CheckInRepository } from '../check-ins-repository'
-import { ResourceNotFoundError } from '@/services/errors/resource-not-found'
+import { ResourceNotFoundError } from '@/services/errors/resource-not-found-error'
 
 export class InmemoryCheckInsRepository implements CheckInRepository {
-  async findById(id: string): Promise<CheckIn | null> {
+  async findById(id: string): Promise<CheckIn> {
     const checkIn = this.checkIns.find((item) => item.id === id)
     if (!checkIn) {
       throw new ResourceNotFoundError()

@@ -1,7 +1,7 @@
 import { expect, describe, it } from 'vitest'
 import { InmemoryUsersRepository } from '@/repositories/in-memory/in-memory-user-repository'
 import { GetUserProfileUseCase } from './get-user-profile'
-import { ResourceNotFoundError } from './errors/resource-not-found'
+import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 describe('Get user profile use case', () => {
   it('should be able to get user profile', async () => {

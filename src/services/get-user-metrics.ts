@@ -1,5 +1,5 @@
 import { CheckInRepository } from '@/repositories/check-ins-repository'
-import { ResourceNotFoundError } from './errors/resource-not-found'
+import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 interface GetUserMetricsUseCaseHistory {
   user_id: string
