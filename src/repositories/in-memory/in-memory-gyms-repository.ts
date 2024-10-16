@@ -43,7 +43,7 @@ export class InmemoryGymsRepository implements GymsRepository {
     return gym
   }
 
-  async findById(id: string): Promise<Gym | null> {
+  async findById(id: string) {
     const gym = this.Gyms.find((gym) => gym.id === id)
 
     if (!gym) {
