@@ -16,7 +16,7 @@ export class ValidateCheckInUseCase {
   }: ValidateCheckInUseCaseRequest): Promise<ValidateCheckInUseCaseResponse> {
     const checkIn = await this.checkInsRepository.findById(checkInId)
     const ditanceInMinutesFromCheckInCreation = dayjs(new Date()).diff(
-      dayjs(checkIn.created_at),
+      dayjs(checkIn?.created_at),
       'minutes',
     )
 
