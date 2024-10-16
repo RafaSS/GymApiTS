@@ -2,8 +2,8 @@ import { expect, describe, it, beforeEach, vi, afterEach } from 'vitest'
 import { InmemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-check-ins-repository'
 import { CheckInUseCase } from './check-in'
 import { InmemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms-repository'
-import { MaxNumberOfCheckInsError } from './erros/max-number-of-checkins'
-import { MaxDistanceError } from './erros/max-distance-error'
+import { MaxNumberOfCheckInsError } from './errors/max-number-of-checkins'
+import { MaxDistanceError } from './errors/max-distance-error'
 
 let sut: CheckInUseCase
 

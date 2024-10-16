@@ -2,7 +2,7 @@ import { expect, describe, it } from 'vitest'
 import { hash } from 'bcryptjs'
 import { InmemoryUsersRepository } from '@/repositories/in-memory/in-memory-user-repository'
 import { AuthenticateUseCase } from './authenticate'
-import { InvalidCredentialsError } from './erros/invalid-credentials-error'
+import { InvalidCredentialsError } from './errors/invalid-credentials-error'
 
 describe('authenticate use case', () => {
   it('should authenticate with valid credentials', async () => {

@@ -1,6 +1,6 @@
 import { CheckInRepository } from '@/repositories/check-ins-repository'
 import { CheckIn } from '@prisma/client'
-import { ResourceNotFoundError } from './erros/resource-not-found'
+import { ResourceNotFoundError } from './errors/resource-not-found'
 
 interface FecthUserCheckInsUseCaseHistory {
   user_id: string
