@@ -5,6 +5,10 @@ import { randomUUID } from 'crypto'
 import { CheckInRepository } from '../check-ins-repository'
 
 export class InmemoryCheckInsRepository implements CheckInRepository {
+  async countByUserId(userid: string): Promise<number> {
+    return this.checkIns.filter((item) => item.user_id === userid).length
+  }
+
   private checkIns: CheckIn[] = []
 
   async findByUserIdOnDate(userId: string, date: Date) {
