@@ -8,9 +8,5 @@ export async function appRoutes(app: FastifyInstance) {
 
   app.post('/auth', authenticateController)
 
-  app.get('/users', async () => {})
-
-  app.get('/users/:id', async () => {})
-
   app.get('/me', profileController)
 }
