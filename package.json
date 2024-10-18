@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "vitest run",
-    "test:watch": "vitest",
+    "test": "vitest run --dir src/services",
+    "test:watch": "vitest run --dir src/services",
     "dev": "tsx watch src/server.ts",
     "build": "tsup src --out-dir build",
     "start": "node build/server.js",
     "lint": "eslint src --ext .ts --fix",
+    "test:e2e": "vitest run --dir src/http",
     "coverage": "vitest run --coverage",
     "test:ui": "vitest --ui"
   },
